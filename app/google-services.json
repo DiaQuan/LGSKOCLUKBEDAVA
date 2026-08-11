@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "296762217990",
+    "firebase_url": "https://lgskocluk-fd44a-default-rtdb.firebaseio.com",
+    "project_id": "lgskocluk-fd44a",
+    "storage_bucket": "lgskocluk-fd44a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296762217990:android:62a9e7b8a15a5d18239587",
+        "android_client_info": {
+          "package_name": "com.yol.lgs2027"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296762217990-on42uem5taqj27kii3v2gis7ummtsksq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB31mYX7TANQ_oKvdMeXRIKx71j8ltONLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296762217990-on42uem5taqj27kii3v2gis7ummtsksq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
