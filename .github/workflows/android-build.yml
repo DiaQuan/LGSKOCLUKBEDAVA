@@ -1,0 +1,46 @@
+name: Android Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK 21 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: google-services.json oluştur
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo "$GOOGLE_SERVICES_JSON" > app/google-services.json
+
+      - name: google-services.json geçerli mi kontrol et
+        run: |
+          if ! python3 -c "import json; json.load(open('app/google-services.json'))" 2>/dev/null; then
+            echo "::error::app/google-services.json geçersiz. GitHub Secret'taki GOOGLE_SERVICES_JSON, Firebase'den indirdiğin dosyanın TAM içeriği olmalı (JSON metni, base64 DEĞİL)."
+            exit 1
+          fi
+
+      - name: gradlew çalıştırılabilir yap
+        run: chmod +x ./gradlew
+
+      - name: Debug APK derle
+        run: ./gradlew assembleDebug
+
+      - name: APK'yı artifact olarak yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: yol-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
